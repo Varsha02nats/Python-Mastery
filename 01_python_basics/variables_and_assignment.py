@@ -1,6 +1,8 @@
 x=5
 y=10
 
+z= x+y
+print(z) # Output: 15
 a,b = 6,9
 a,b = b,a
 
