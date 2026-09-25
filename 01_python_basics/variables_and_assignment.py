@@ -9,7 +9,7 @@ print(z) # Output: 15
 a,b = 6,9
 a,b = b,a
 
-i=j=0
+#i=j=0
 
 count=0
 count+=1
