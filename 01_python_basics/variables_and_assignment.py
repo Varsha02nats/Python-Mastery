@@ -55,33 +55,3 @@ for _ in range(3):
     p, q = q, p+q    #right side uses old values of p and q to compute new values, then assigns them to p and q simultaneously
 print("The value of p is:", p)  # Output: 5
 print("The value of q is:", q)  # Output: 8
-
-# Definition for singly-linked list.
-# class ListNode:
-#     def __init__(self, val=0, next=None):
-#         self.val = val
-#         self.next = next
-class Solution:
-    def addTwoNumbers(self, l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
-        carryover=0
-        dummynode = ListNode(0)
-        current = dummynode
-
-        #iterate through the linked lists
-        while l1 or l2 or carryover:
-            val1 = l1.val if l1 else 0
-            val2 = l2.val if l2 else 0
-
-            sum = val1 + val2 + carryover
-            carryover = sum // 10
-            digit = sum%10
-
-            current.next = ListNode(digit)
-            current = current.next
-
-            if l1:
-                l1= l1.next
-            if l2:
-                l2 = l2.next
-
-        return dummynode.next
