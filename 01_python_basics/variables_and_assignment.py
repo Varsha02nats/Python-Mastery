@@ -55,3 +55,16 @@ for _ in range(3):
     p, q = q, p+q    #right side uses old values of p and q to compute new values, then assigns them to p and q simultaneously
 print("The value of p is:", p)  # Output: 5
 print("The value of q is:", q)  # Output: 8
+
+
+def classify_number(num):
+    if num > 0:
+        return "Positive"
+    elif num < 0:
+        return "Negative"
+    else:
+        return "Zero"
+
+print(classify_number(10))   # Output: Positive
+print(classify_number(-5))   # Output: Negative
+print(classify_number(0))    # Output: Zero
