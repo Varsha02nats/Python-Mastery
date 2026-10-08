@@ -84,3 +84,25 @@ def fibonacci(n):
         fib_sequence.append(next_number)
     
     return fib_sequence
+
+def is_palindrome(s):
+    return s == s[::-1]
+
+def is_prime(num):
+    if num <= 1:
+        return False
+    for i in range(2, int(num**0.5) + 1):
+        if num % i == 0:
+            return False
+    return True
+
+def factorial(n):
+    if n < 0:
+        raise ValueError("Factorial is not defined for negative numbers.")
+    elif n == 0 or n == 1:
+        return 1
+    else:
+        result = 1
+        for i in range(2, n + 1):
+            result *= i
+        return result
