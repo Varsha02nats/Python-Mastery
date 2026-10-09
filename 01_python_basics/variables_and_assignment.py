@@ -106,3 +106,20 @@ def factorial(n):
         for i in range(2, n + 1):
             result *= i
         return result
+
+def in_bound(value, lower, upper):
+    return lower <= value <= upper
+
+def is_even(num):
+    return num % 2 == 0
+
+def is_odd(num):
+    return num % 2 != 0
+
+def sum_of_squares(n):
+    return sum(i**2 for i in range(1, n + 1))
+
+def gcd(a, b):
+    while b:
+        a, b = b, a % b
+    return a
