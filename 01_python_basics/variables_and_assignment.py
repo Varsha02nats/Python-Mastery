@@ -123,3 +123,39 @@ def gcd(a, b):
     while b:
         a, b = b, a % b
     return a
+
+def lcm(a, b):
+    return abs(a * b) // gcd(a, b)
+
+def fibonacci_recursive(n):
+    if n <= 0:
+        return []
+    elif n == 1:
+        return [0]
+    elif n == 2:
+        return [0, 1]
+    else:
+        fib_sequence = fibonacci_recursive(n - 1)
+        fib_sequence.append(fib_sequence[-1] + fib_sequence[-2])
+        return fib_sequence
+
+def is_perfect_square(num):
+    if num < 0:
+        return False
+    root = int(num**0.5)
+    return root * root == num
+
+def is_armstrong_number(num):
+    num_str = str(num)
+    num_len = len(num_str)
+    sum_of_powers = sum(int(digit) ** num_len for digit in num_str)
+    return sum_of_powers == num
+
+def is_palindrome_number(num):
+    return str(num) == str(num)[::-1]
+
+def is_perfect_number(num):
+    if num <= 0:
+        return False
+    divisors_sum = sum(i for i in range(1, num) if num % i == 0)
+    return divisors_sum == num
