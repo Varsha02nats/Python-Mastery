@@ -159,3 +159,30 @@ def is_perfect_number(num):
         return False
     divisors_sum = sum(i for i in range(1, num) if num % i == 0)
     return divisors_sum == num
+
+def close_parentheses(s):
+    stack = []
+    for char in s:
+        if char == '(':
+            stack.append(char)
+        elif char == ')':
+            if not stack:
+                return False
+            stack.pop()
+    return len(stack) == 0
+
+def digit_square_sum(num):
+    return sum(int(digit) ** 2 for digit in str(num))   
+
+def is_happy_number(num):
+    seen = set()
+    while num != 1 and num not in seen:
+        seen.add(num)
+        num = digit_square_sum(num)
+    return num == 1
+
+def is_perfect_cube(num):
+    if num < 0:
+        return False
+    root = round(num ** (1/3))
+    return root ** 3 == num
