@@ -186,3 +186,44 @@ def is_perfect_cube(num):
         return False
     root = round(num ** (1/3))
     return root ** 3 == num
+
+def is_palindrome_string(s):
+    return s == s[::-1]
+
+def is_prime_recursive(num, divisor=None):
+    if divisor is None:
+        divisor = num - 1
+    if num <= 1:
+        return False
+    if divisor == 1:
+        return True
+    if num % divisor == 0:
+        return False
+    return is_prime_recursive(num, divisor - 1)
+
+def is_armstrong_recursive(num, original=None, power=None):
+    if original is None:
+        original = num
+        power = len(str(num))
+    if num == 0:
+        return original == 0
+    digit = num % 10
+    return is_armstrong_recursive(num // 10, original, power) + digit ** power == original
+
+def is_palindrome_recursive(s):
+    if len(s) <= 1:
+        return True
+    if s[0] != s[-1]:
+        return False
+    return is_palindrome_recursive(s[1:-1])
+
+def is_perfect_square_recursive(num, root=None):
+    if num < 0:
+        return False
+    if root is None:
+        root = int(num**0.5)
+    if root * root == num:
+        return True
+    if root < 0:
+        return False
+    return is_perfect_square_recursive(num, root - 1)
