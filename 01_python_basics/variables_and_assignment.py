@@ -227,3 +227,48 @@ def is_perfect_square_recursive(num, root=None):
     if root < 0:
         return False
     return is_perfect_square_recursive(num, root - 1)
+
+def is_happy_number_recursive(num, seen=None):
+    if seen is None:
+        seen = set()
+    if num == 1:
+        return True
+    if num in seen:
+        return False
+    seen.add(num)
+    next_num = digit_square_sum(num)
+    return is_happy_number_recursive(next_num, seen)
+
+def is_perfect_cube_recursive(num, root=None):
+    if num < 0:
+        return False
+    if root is None:
+        root = round(num ** (1/3))
+    if root ** 3 == num:
+        return True
+    if root < 0:
+        return False
+    return is_perfect_cube_recursive(num, root - 1)
+
+def is_palindrome_string_recursive(s):
+    if len(s) <= 1:
+        return True
+    if s[0] != s[-1]:
+        return False
+    return is_palindrome_string_recursive(s[1:-1])
+
+def is_prime_iterative(num):
+    if num <= 1:
+        return False
+    for i in range(2, int(num**0.5) + 1):
+        if num % i == 0:
+            return False
+    return True
+
+def is_armstrong_iterative(num):
+    num_str = str(num)
+    num_len = len(num_str)
+    sum_of_powers = 0
+    for digit in num_str:
+        sum_of_powers += int(digit) ** num_len
+    return sum_of_powers == num
