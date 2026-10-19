@@ -27,3 +27,25 @@ class Solution:
                 l2 = l2.next
 
         return dummynode.next
+
+class Solution:
+    def mergeTwoLists(self, l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
+        dummynode = ListNode(0)
+        current = dummynode
+
+        while l1 and l2:
+            if l1.val < l2.val:
+                current.next = l1
+                l1 = l1.next
+            else:
+                current.next = l2
+                l2 = l2.next
+            current = current.next
+
+        # If there are remaining nodes in either list, append them
+        if l1:
+            current.next = l1
+        elif l2:
+            current.next = l2
+
+        return dummynode.next
