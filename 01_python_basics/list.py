@@ -49,3 +49,37 @@ class Solution:
             current.next = l2
 
         return dummynode.next
+
+class Solution:
+    def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
+        dummynode = ListNode(0)
+        dummynode.next = head
+        first = dummynode
+        second = dummynode
+
+        # Move first pointer n+1 steps ahead
+        for _ in range(n + 1):
+            first = first.next
+
+        # Move both pointers until first reaches the end
+        while first:
+            first = first.next
+            second = second.next
+
+        # Remove the nth node from the end
+        second.next = second.next.next
+
+        return dummynode.next
+
+class Solution:
+    def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        prev = None
+        current = head
+
+        while current:
+            next_node = current.next  # Store the next node
+            current.next = prev       # Reverse the link
+            prev = current            # Move prev to current
+            current = next_node       # Move to the next node
+
+        return prev  # New head of the reversed list
