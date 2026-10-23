@@ -83,3 +83,18 @@ class Solution:
             current = next_node       # Move to the next node
 
         return prev  # New head of the reversed list
+
+class Solution:
+    def hasCycle(self, head: Optional[ListNode]) -> bool:
+        slow = head
+        fast = head
+
+        while fast and fast.next:
+            slow = slow.next          # Move slow pointer by 1
+            fast = fast.next.next     # Move fast pointer by 2
+
+            if slow == fast:          # Cycle detected
+                return True
+
+        return False  # No cycle detected
+
