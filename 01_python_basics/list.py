@@ -98,3 +98,39 @@ class Solution:
 
         return False  # No cycle detected
 
+class Solution:
+    def detectCycle(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        slow = head
+        fast = head
+
+        # First step: Determine if there is a cycle
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
+
+            if slow == fast:  # Cycle detected
+                break
+        else:
+            return None  # No cycle detected
+
+        # Second step: Find the entry point of the cycle
+        slow = head
+        while slow != fast:
+            slow = slow.next
+            fast = fast.next
+
+        return slow  # Entry point of the cycle 
+
+class Solution:
+    def removeElements(self, head: Optional[ListNode], val: int) -> Optional[ListNode]:
+        dummynode = ListNode(0)
+        dummynode.next = head
+        current = dummynode
+
+        while current.next:
+            if current.next.val == val:
+                current.next = current.next.next  # Remove the node
+            else:
+                current = current.next  # Move to the next node
+
+        return dummynode.next  # Return the new head of the list
