@@ -134,3 +134,44 @@ class Solution:
                 current = current.next  # Move to the next node
 
         return dummynode.next  # Return the new head of the list
+
+class Solution:
+    def isPalindrome(self, head: Optional[ListNode]) -> bool:
+        # Find the end of the first half and reverse the second half.
+        def end_of_first_half(node):
+            fast = node
+            slow = node
+            while fast.next and fast.next.next:
+                fast = fast.next.next
+                slow = slow.next
+            return slow
+
+        def reverse_list(node):
+            prev = None
+            current = node
+            while current:
+                next_node = current.next
+                current.next = prev
+                prev = current
+                current = next_node
+            return prev
+
+        if not head or not head.next:
+            return True
+
+        first_half_end = end_of_first_half(head)
+        second_half_start = reverse_list(first_half_end.next)
+
+        # Check whether or not there is a palindrome.
+        p1 = head
+        p2 = second_half_start
+        result = True
+        while result and p2:
+            if p1.val != p2.val:
+                result = False
+            p1 = p1.next
+            p2 = p2.next
+
+        # Restore the list and return the result.
+        first_half_end.next = reverse_list(second_half_start)
+        return result
