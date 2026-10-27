@@ -175,3 +175,15 @@ class Solution:
         # Restore the list and return the result.
         first_half_end.next = reverse_list(second_half_start)
         return result
+
+class Solution:
+    def removeDuplicates(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        current = head
+
+        while current and current.next:
+            if current.val == current.next.val:
+                current.next = current.next.next  # Skip the duplicate node
+            else:
+                current = current.next  # Move to the next node
+
+        return head  # Return the modified list without duplicates
