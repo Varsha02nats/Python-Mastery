@@ -187,3 +187,49 @@ class Solution:
                 current = current.next  # Move to the next node
 
         return head  # Return the modified list without duplicates
+
+class Solution:
+    def deleteDuplicates(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        dummynode = ListNode(0)
+        dummynode.next = head
+        prev = dummynode
+        current = head
+
+        while current:
+            # Move current until the end of duplicates
+            while current.next and current.val == current.next.val:
+                current = current.next
+
+            # If prev's next is still current, no duplicates were found
+            if prev.next == current:
+                prev = prev.next  # Move prev to next node
+            else:
+                prev.next = current.next  # Skip all duplicates
+
+            current = current.next  # Move to the next node
+
+        return dummynode.next  # Return the modified list without duplicates
+
+class Solution:
+    def partition(self, head: Optional[ListNode], x: int) -> Optional[ListNode]:
+        before_head = ListNode(0)  # Dummy node for the 'before' list
+        after_head = ListNode(0)   # Dummy node for the 'after' list
+
+        before = before_head  # Pointer to build the 'before' list
+        after = after_head    # Pointer to build the 'after' list
+
+        current = head  # Start from the head of the original list
+
+        while current:
+            if current.val < x:
+                before.next = current  # Add to 'before' list
+                before = before.next
+            else:
+                after.next = current  # Add to 'after' list
+                after = after.next
+            current = current.next  # Move to the next node
+
+        after.next = None  # Terminate the 'after' list
+        before.next = after_head.next  # Connect 'before' and 'after' lists
+
+        return before_head.next  # Return the head of the new partitioned list
