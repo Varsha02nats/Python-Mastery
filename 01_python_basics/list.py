@@ -233,3 +233,22 @@ class Solution:
         before.next = after_head.next  # Connect 'before' and 'after' lists
 
         return before_head.next  # Return the head of the new partitioned list
+
+class Solution:
+    def oddEvenList(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        if not head:
+            return None
+
+        odd = head  # Pointer for odd indexed nodes
+        even = head.next  # Pointer for even indexed nodes
+        even_head = even  # Store the head of the even indexed nodes
+
+        while even and even.next:
+            odd.next = even.next  # Link odd node to the next odd node
+            odd = odd.next  # Move odd pointer to the next odd node
+            even.next = odd.next  # Link even node to the next even node
+            even = even.next  # Move even pointer to the next even node
+
+        odd.next = even_head  # Connect the end of odd list to the head of even list
+
+        return head  # Return the modified list with odd and even nodes rearranged
