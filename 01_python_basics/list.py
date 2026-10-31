@@ -283,3 +283,41 @@ class Solution:
         new_tail.next = None
 
         return new_head  # Return the new head of the rotated list
+
+class Solution:
+    def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]:
+        if not lists:
+            return None
+
+        # Helper function to merge two sorted linked lists
+        def mergeTwoLists(l1, l2):
+            dummynode = ListNode(0)
+            current = dummynode
+
+            while l1 and l2:
+                if l1.val < l2.val:
+                    current.next = l1
+                    l1 = l1.next
+                else:
+                    current.next = l2
+                    l2 = l2.next
+                current = current.next
+
+            # If there are remaining nodes in either list, append them
+            if l1:
+                current.next = l1
+            elif l2:
+                current.next = l2
+
+            return dummynode.next
+
+        # Use divide and conquer to merge k lists
+        while len(lists) > 1:
+            merged_lists = []
+            for i in range(0, len(lists), 2):
+                l1 = lists[i]
+                l2 = lists[i + 1] if (i + 1) < len(lists) else None
+                merged_lists.append(mergeTwoLists(l1, l2))
+            lists = merged_lists
+
+        return lists[0]  # Return the merged list
